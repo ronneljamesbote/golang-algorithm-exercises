@@ -5,9 +5,9 @@ import (
 )
 
 func BinarySearchLoop(needle int32, haystack []int32) (int32, error) {
-	var min int = 0
-	var max int = len(haystack)
-	var mid int = (min + max) / 2
+	var min int32 = 0
+	var max int32 = int32(len(haystack))
+	var mid int32 = (min + max) / 2
 
 	var curr int32 = haystack[mid]
 
