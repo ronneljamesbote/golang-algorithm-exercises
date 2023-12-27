@@ -49,3 +49,13 @@ func TestBinarySearchRecurse(t *testing.T) {
 		}
 	}
 }
+
+func TestBinarySearchRecurseShouldNotBeFound(t *testing.T) {
+	var find int32 = 13
+
+	result, err := BinarySearchRecurse(find, binarySearchNumbers, 0, int32(len(binarySearchNumbers)))
+
+	if err == nil {
+		t.Fatalf(`BinarySearchRecurse(%d) should not be found, %d given`, find, result)
+	}
+}
