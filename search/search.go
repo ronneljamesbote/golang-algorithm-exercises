@@ -11,7 +11,11 @@ func BinarySearchLoop(needle int32, haystack []int32) (int32, error) {
 
 	var curr int32 = haystack[mid]
 
-	for min <= max {
+	for {
+		if min > max {
+			break
+		}
+
 		if curr == needle {
 			return int32(mid), nil
 		}
@@ -23,6 +27,11 @@ func BinarySearchLoop(needle int32, haystack []int32) (int32, error) {
 		}
 
 		mid = (min + max) / 2
+
+		if mid >= int32(len(haystack)) {
+			break
+		}
+
 		curr = haystack[mid]
 	}
 
