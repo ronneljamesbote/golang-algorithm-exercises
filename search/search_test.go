@@ -4,9 +4,9 @@ import (
 	"testing"
 )
 
-var binarySearchNumbers []int32 = []int32{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
+var binarySearchNumbers []int = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
 
-var binarySearchCheck map[int32]int32 = map[int32]int32{
+var binarySearchCheck map[int]int = map[int]int{
 	1:  0,
 	9:  8,
 	12: 11,
@@ -16,8 +16,8 @@ var binarySearchCheck map[int32]int32 = map[int32]int32{
 
 func TestBinarySearchLoopShouldBeFound(t *testing.T) {
 	for v, i := range binarySearchCheck {
-		var want int32 = i
-		var find int32 = v
+		var want int = i
+		var find int = v
 
 		result, err := BinarySearchLoop(find, binarySearchNumbers)
 
@@ -28,7 +28,7 @@ func TestBinarySearchLoopShouldBeFound(t *testing.T) {
 }
 
 func TestBinarySearchLoopShouldNotBeFound(t *testing.T) {
-	var find int32 = 13
+	var find int = 13
 
 	result, err := BinarySearchLoop(find, binarySearchNumbers)
 
@@ -39,10 +39,10 @@ func TestBinarySearchLoopShouldNotBeFound(t *testing.T) {
 
 func TestBinarySearchRecurse(t *testing.T) {
 	for v, i := range binarySearchCheck {
-		var want int32 = i
-		var find int32 = v
+		var want int = i
+		var find int = v
 
-		result, err := BinarySearchRecurse(find, binarySearchNumbers, 0, int32(len(binarySearchNumbers)))
+		result, err := BinarySearchRecurse(find, binarySearchNumbers, 0, len(binarySearchNumbers))
 
 		if err != nil || result != want {
 			t.Fatalf(`BinarySearchRecurse(%d) = %d, %d given with error %v`, find, want, result, err)
@@ -51,9 +51,9 @@ func TestBinarySearchRecurse(t *testing.T) {
 }
 
 func TestBinarySearchRecurseShouldNotBeFound(t *testing.T) {
-	var find int32 = 13
+	var find int = 13
 
-	result, err := BinarySearchRecurse(find, binarySearchNumbers, 0, int32(len(binarySearchNumbers)-1))
+	result, err := BinarySearchRecurse(find, binarySearchNumbers, 0, len(binarySearchNumbers)-1)
 
 	if err == nil {
 		t.Fatalf(`BinarySearchRecurse(%d) should not be found, %d given`, find, result)

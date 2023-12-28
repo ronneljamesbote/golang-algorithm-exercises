@@ -4,24 +4,24 @@ import (
 	"errors"
 )
 
-func BinarySearchLoop(needle int32, haystack []int32) (int32, error) {
-	var min int32 = 0
-	var max int32 = int32(len(haystack) - 1)
+func BinarySearchLoop(needle int, haystack []int) (int, error) {
+	var min int = 0
+	var max int = int(len(haystack) - 1)
 
-	var mid int32
-	var curr int32
+	var mid int
+	var curr int
 
 	for {
 		mid = (min + max) / 2
 
-		if min > max || mid >= int32(len(haystack)) {
+		if min > max || mid >= int(len(haystack)) {
 			break
 		}
 
 		curr = haystack[mid]
 
 		if curr == needle {
-			return int32(mid), nil
+			return mid, nil
 		}
 
 		if needle < curr {
@@ -34,17 +34,17 @@ func BinarySearchLoop(needle int32, haystack []int32) (int32, error) {
 	return 0, errors.New("Needle not found")
 }
 
-func BinarySearchRecurse(needle int32, haystack []int32, min int32, max int32) (int32, error) {
-	var mid int32 = (min + max) / 2
+func BinarySearchRecurse(needle int, haystack []int, min int, max int) (int, error) {
+	var mid int = (min + max) / 2
 
-	if min > max || mid >= int32(len(haystack)) {
+	if min > max || mid >= int(len(haystack)) {
 		return 0, errors.New("Needle not found")
 	}
 
-	var curr int32 = haystack[mid]
+	var curr int = haystack[mid]
 
 	if curr == needle {
-		return int32(mid), nil
+		return mid, nil
 	}
 
 	if needle < curr {
