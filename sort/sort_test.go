@@ -16,3 +16,11 @@ func TestSimpleSortDesc(t *testing.T) {
 		t.Fatalf("SimpleSortDesc(%v) = %v, %v given", unsortedNumbers, wantDesc, result)
 	}
 }
+
+func TestQuickSortDesc(t *testing.T) {
+	result := QuickSortDesc(unsortedNumbers)
+
+	if reflect.DeepEqual(result, wantDesc) == false {
+		t.Fatalf("QuickSortDesc(%v) = %v, %v given", unsortedNumbers, wantDesc, result)
+	}
+}

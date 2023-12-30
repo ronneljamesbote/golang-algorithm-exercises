@@ -22,3 +22,33 @@ func SimpleSortDesc(numbers []int) []int {
 
 	return sorted
 }
+
+func QuickSortDesc(numbers []int) []int {
+	if len(numbers) < 2 {
+		return numbers
+	}
+
+	var higher []int = make([]int, 0, len(numbers))
+	var lower []int = make([]int, 0, len(numbers))
+
+	pivot := numbers[0]
+
+	for _, value := range numbers[1:] {
+		if pivot > value {
+			lower = append(lower, value)
+			continue
+		}
+
+		higher = append(higher, value)
+	}
+
+	leftPartition := QuickSortDesc(higher)
+	rightPartition := QuickSortDesc(lower)
+
+	var sorted []int
+	sorted = append(sorted, leftPartition...)
+	sorted = append(sorted, pivot)
+	sorted = append(sorted, rightPartition...)
+
+	return sorted
+}
