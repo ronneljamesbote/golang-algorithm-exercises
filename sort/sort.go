@@ -5,7 +5,7 @@ func SimpleSortDesc(numbers []int) []int {
 		return numbers
 	}
 
-	sorted := make([]int, len(numbers))
+	sorted := make([]int, 0, len(numbers))
 	copy(sorted, numbers)
 
 	var tmp int
