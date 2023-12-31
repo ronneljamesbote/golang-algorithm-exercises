@@ -31,14 +31,14 @@ func BinarySearchLoop(needle int, haystack []int) (int, error) {
 		}
 	}
 
-	return 0, errors.New("Needle not found")
+	return 0, errors.New("Not found")
 }
 
 func BinarySearchRecurse(needle int, haystack []int, min int, max int) (int, error) {
 	var mid int = (min + max) / 2
 
 	if min > max || mid >= int(len(haystack)) {
-		return 0, errors.New("Needle not found")
+		return 0, errors.New("Not found")
 	}
 
 	var curr int = haystack[mid]

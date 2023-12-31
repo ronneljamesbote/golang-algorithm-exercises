@@ -2,60 +2,52 @@ package search
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-var binarySearchNumbers []int = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
+var numbers []int = []int{1, 3, 4, 69, 71, 81, 90, 99, 420, 1337, 69420}
 
-var binarySearchCheck map[int]int = map[int]int{
-	1:  0,
-	9:  8,
-	12: 11,
-	3:  2,
-	7:  6,
-}
+func TestBinarySearchLoop(t *testing.T) {
+	var assert *assert.Assertions = assert.New(t)
 
-func TestBinarySearchLoopShouldBeFound(t *testing.T) {
-	for v, i := range binarySearchCheck {
-		var want int = i
-		var find int = v
+	val1, _ := BinarySearchLoop(69, numbers)
+	assert.Equal(val1, 3, "should be equal")
 
-		result, err := BinarySearchLoop(find, binarySearchNumbers)
+	_, err1 := BinarySearchLoop(1336, numbers)
+	assert.NotNil(err1, "1336 should not be found")
 
-		if err != nil || result != want {
-			t.Fatalf(`BinarySearchLoop(%d) = %d, %d given with error %v`, find, want, result, err)
-		}
-	}
-}
+	val2, _ := BinarySearchLoop(69420, numbers)
+	assert.Equal(val2, 10, "should be equal")
 
-func TestBinarySearchLoopShouldNotBeFound(t *testing.T) {
-	var find int = 13
+	_, err2 := BinarySearchLoop(69421, numbers)
+	assert.NotNil(err2, "69421 should not be found")
 
-	result, err := BinarySearchLoop(find, binarySearchNumbers)
+	val3, _ := BinarySearchLoop(1, numbers)
+	assert.Equal(val3, 0, "should be equal")
 
-	if err == nil {
-		t.Fatalf(`BinarySearchLoop(%d) should not be found, %d given`, find, result)
-	}
+	_, err3 := BinarySearchLoop(0, numbers)
+	assert.NotNil(err3, "0 should not be found")
 }
 
 func TestBinarySearchRecurse(t *testing.T) {
-	for v, i := range binarySearchCheck {
-		var want int = i
-		var find int = v
+	var assert *assert.Assertions = assert.New(t)
 
-		result, err := BinarySearchRecurse(find, binarySearchNumbers, 0, len(binarySearchNumbers))
+	val1, _ := BinarySearchRecurse(69, numbers, 0, len(numbers))
+	assert.Equal(val1, 3, "should be equal")
 
-		if err != nil || result != want {
-			t.Fatalf(`BinarySearchRecurse(%d) = %d, %d given with error %v`, find, want, result, err)
-		}
-	}
-}
+	_, err1 := BinarySearchRecurse(1336, numbers, 0, len(numbers))
+	assert.NotNil(err1, "1336 should not be found")
 
-func TestBinarySearchRecurseShouldNotBeFound(t *testing.T) {
-	var find int = 13
+	val2, _ := BinarySearchRecurse(69420, numbers, 0, len(numbers))
+	assert.Equal(val2, 10, "should be equal")
 
-	result, err := BinarySearchRecurse(find, binarySearchNumbers, 0, len(binarySearchNumbers)-1)
+	_, err2 := BinarySearchRecurse(69421, numbers, 0, len(numbers))
+	assert.NotNil(err2, "69421 should not be found")
 
-	if err == nil {
-		t.Fatalf(`BinarySearchRecurse(%d) should not be found, %d given`, find, result)
-	}
+	val3, _ := BinarySearchRecurse(1, numbers, 0, len(numbers))
+	assert.Equal(val3, 0, "should be equal")
+
+	_, err3 := BinarySearchRecurse(0, numbers, 0, len(numbers))
+	assert.NotNil(err3, "0 should not be found")
 }
