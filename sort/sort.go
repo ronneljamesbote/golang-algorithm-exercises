@@ -1,11 +1,11 @@
 package sort
 
 func SimpleSortDesc(numbers []int) []int {
-	if len(numbers) == 0 || len(numbers) == 1 {
+	if len(numbers) <= 1 {
 		return numbers
 	}
 
-	sorted := make([]int, 0, len(numbers))
+	sorted := make([]int, len(numbers), len(numbers))
 	copy(sorted, numbers)
 
 	var tmp int
