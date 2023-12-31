@@ -1,26 +1,27 @@
 package sort
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-var unsortedNumbers []int = []int{5, 12, 1, 6, 3, 4, 7, 7, 11, 8, 9, 2, 10, 1}
+var unsorted []int = []int{9, 3, 7, 4, 69, 420, 0, 42, 7}
 
-var wantDesc []int = []int{12, 11, 10, 9, 8, 7, 7, 6, 5, 4, 3, 2, 1, 1}
+var sorted []int = []int{420, 69, 42, 9, 7, 7, 4, 3, 0}
 
 func TestSimpleSortDesc(t *testing.T) {
-	result := SimpleSortDesc(unsortedNumbers)
+	var assert *assert.Assertions = assert.New(t)
 
-	if reflect.DeepEqual(result, wantDesc) == false {
-		t.Fatalf("SimpleSortDesc(%v) = %v, %v given", unsortedNumbers, wantDesc, result)
-	}
+	result := SimpleSortDesc(unsorted)
+
+	assert.Equal(sorted, result, "should be equal")
 }
 
 func TestQuickSortDesc(t *testing.T) {
-	result := QuickSortDesc(unsortedNumbers)
+	var assert *assert.Assertions = assert.New(t)
 
-	if reflect.DeepEqual(result, wantDesc) == false {
-		t.Fatalf("QuickSortDesc(%v) = %v, %v given", unsortedNumbers, wantDesc, result)
-	}
+	result := QuickSortDesc(unsorted)
+
+	assert.Equal(sorted, result, "should be equal")
 }
