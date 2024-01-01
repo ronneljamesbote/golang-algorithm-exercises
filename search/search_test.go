@@ -51,3 +51,19 @@ func TestBinarySearchRecurse(t *testing.T) {
 	_, err3 := BinarySearchRecurse(0, numbers, 0, len(numbers))
 	assert.NotNil(err3, "0 should not be found")
 }
+
+func TestBreadthFirstSearch(t *testing.T) {
+	var graphList map[int][]int = make(map[int][]int)
+	graphList[0] = []int{1, 2}
+	graphList[1] = []int{4}
+	graphList[2] = []int{3}
+	graphList[3] = []int{}
+	graphList[4] = []int{1, 3, 5}
+	graphList[5] = []int{2, 6}
+	graphList[6] = []int{3}
+
+	var assert *assert.Assertions = assert.New(t)
+
+	val1 := BreadthFirstSearch(0, 6, graphList)
+	assert.Equal([]int{0, 1, 4, 5, 6}, val1, "should be equal")
+}
