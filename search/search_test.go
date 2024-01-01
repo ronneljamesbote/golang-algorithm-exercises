@@ -52,18 +52,32 @@ func TestBinarySearchRecurse(t *testing.T) {
 	assert.NotNil(err3, "0 should not be found")
 }
 
-func TestBreadthFirstSearch(t *testing.T) {
-	var graphList map[int][]int = make(map[int][]int)
-	graphList[0] = []int{1, 2}
-	graphList[1] = []int{4}
-	graphList[2] = []int{3}
-	graphList[3] = []int{}
-	graphList[4] = []int{1, 3, 5}
-	graphList[5] = []int{2, 6}
-	graphList[6] = []int{3}
+/*
+//     >(1)<--->(4) ---->(5)
+//    /          |       /|
+// (0)     ------|------- |
+//    \   v      v        v
+//     >(2) --> (3) <----(6)
+*/
+var adjacencyList map[int][]int = map[int][]int{
+	0: {1, 2},
+	1: {4},
+	2: {3},
+	3: {},
+	4: {1, 3, 5},
+	5: {2, 6},
+	6: {3},
+}
 
+func TestBreadthFirstSearch(t *testing.T) {
 	var assert *assert.Assertions = assert.New(t)
 
-	val1 := BreadthFirstSearch(0, 6, graphList)
+	val1 := BreadthFirstSearch(0, 6, adjacencyList)
 	assert.Equal([]int{0, 1, 4, 5, 6}, val1, "should be equal")
+
+	val2 := BreadthFirstSearch(0, 3, adjacencyList)
+	assert.Equal([]int{0, 2, 3}, val2, "should be equal")
+
+	val3 := BreadthFirstSearch(1, 3, adjacencyList)
+	assert.Equal([]int{1, 4, 3}, val3, "should be equal")
 }
