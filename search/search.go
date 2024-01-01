@@ -76,23 +76,23 @@ func BreadthFirstSearch(from int, to int, list map[int][]int) []int {
 	var seen map[int]bool = make(map[int]bool)
 	var parent map[int]int = make(map[int]int)
 
-	var curr int
-
 	queue = append(queue, from)
 	seen[from] = true
 
-	for len(queue) > 0 {
-		curr, queue = queue[0], queue[1:]
+	var cursor int
 
-		if curr == to {
+	for len(queue) > 0 {
+		cursor, queue = queue[0], queue[1:]
+
+		if cursor == to {
 			return backtrace(from, to, parent)
 		}
 
-		for _, edge := range list[curr] {
+		for _, edge := range list[cursor] {
 			if seen[edge] == false {
 				queue = append(queue, edge)
 				seen[edge] = true
-				parent[edge] = curr
+				parent[edge] = cursor
 			}
 		}
 	}
