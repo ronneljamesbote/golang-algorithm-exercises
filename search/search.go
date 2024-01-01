@@ -2,7 +2,6 @@ package search
 
 import (
 	"errors"
-	"fmt"
 	"slices"
 )
 
@@ -94,7 +93,6 @@ func BreadthFirstSearch(from int, to int, list map[int][]int) []int {
 				queue = append(queue, edge)
 				seen[edge] = true
 				parent[edge] = curr
-				fmt.Printf("Parent: %v \n", map[int]int{edge: curr})
 			}
 		}
 	}
